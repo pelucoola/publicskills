@@ -1,0 +1,32 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { background: #e9edf1; color: #202020; }
+.toolbar {
+  position: sticky; top: 0; z-index: 5; padding: 14px 20px;
+  background: #183047; color: white;
+  font: 15px/1.5 BookletRegular, "PingFang SC", sans-serif;
+}
+.toolbar button {
+  margin-right: 16px; padding: 7px 20px; border: 0; border-radius: 4px;
+  background: white; color: #183047; font: inherit; cursor: pointer;
+}
+.sheet {
+  position: relative; width: 841.8898pt; height: 595.2756pt;
+  margin: 18px auto; overflow: hidden; background: white;
+  box-shadow: 0 2px 12px #0002;
+}
+.textline {
+  position: absolute; margin: 0; padding: 0; white-space: pre;
+  line-height: 1; font-family: BookletRegular, "PingFang SC", sans-serif;
+}
+.textline.bold { font-family: BookletBold, BookletRegular, "PingFang SC", sans-serif; }
+.figure { position: absolute; display: block; object-fit: contain; }
+.rule, .panel { position: absolute; }
+@page { size: A4 landscape; margin: 0; }
+@media print {
+  body { background: white; }
+  .toolbar { display: none; }
+  .sheet { margin: 0; box-shadow: none; break-after: page; page-break-after: always; }
+  .sheet:last-child { break-after: auto; page-break-after: auto; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}

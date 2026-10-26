@@ -1,0 +1,6 @@
+interface:
+  display_name: "错题讲评册"
+  short_description: "拍卷后先确认试卷标题和日期，生成原作答对照、逐步讲解与标准答案打印册"
+  default_prompt: "请用 $exam-review-booklet 处理我提供的卷子，先引导我确认或自填标题和考试/作业日期，再生成可直接打印的错题讲评册。"
+policy:
+  allow_implicit_invocation: true
