@@ -7,10 +7,10 @@
 | 项目 | 内容 |
 | --- | --- |
 | 技能名称 | `exam-review-booklet` |
-| 当前版本 | 1.0.1 |
+| 当前版本 | 1.0.2 |
 | 主要输出 | A4 横向 PDF、自包含打印网页 |
 | 源任务日期 | 2026-10-25 |
-| 本次更新 | 2026-10-26，统一仓库目录并完善用途与安装说明 |
+| 本次更新 | 2026-10-26，清理与原任务相同的示例日期，更新脱敏安装包 |
 
 ## 讲评册里有什么
 
@@ -49,13 +49,13 @@ https://github.com/pelucoola/publicskills/tree/main/skills/exam-review-booklet
 
 ### 从 ZIP 安装
 
-[下载 1.0.1 安装包](https://github.com/pelucoola/publicskills/blob/main/dist/exam-review-booklet/exam-review-booklet-1.0.1.zip)，把它交给 agent，并发送：
+[下载 1.0.2 安装包](https://github.com/pelucoola/publicskills/blob/main/dist/exam-review-booklet/exam-review-booklet-1.0.2.zip)，把它交给 agent，并发送：
 
 ```text
 请安装 ZIP 中完整的 exam-review-booklet 技能文件夹，并检查它的运行依赖。
 ```
 
-安装包的 [SHA-256 校验文件](https://github.com/pelucoola/publicskills/blob/main/dist/exam-review-booklet/exam-review-booklet-1.0.1.zip.sha256)可用于核对下载完整性。
+安装包的 [SHA-256 校验文件](https://github.com/pelucoola/publicskills/blob/main/dist/exam-review-booklet/exam-review-booklet-1.0.2.zip.sha256)可用于核对下载完整性。
 
 ## 怎么使用
 
@@ -136,6 +136,8 @@ exam-review-booklet/
 
 原始照片保留原样，裁图用于讲义；看不清或不能判定的内容会明确标记。生成结果需核验题目、推导与排版，不能用单个模糊或空白作答直接推断孩子整体不会。
 
-学生照片、姓名、成绩、实际作答和生成的讲评册保存在当次任务目录，不放进公开技能目录或安装包。
+文档中的题名、日期和作答示例均为虚构演示。学生照片、姓名、成绩、实际作答和生成的讲评册保存在当次任务目录，不放进公开技能目录或安装包。
+
+排版脚本没有网络上传功能。识图和分析是否经过在线服务，取决于所使用的 agent 与运行环境；公开技能不等于对整个处理环境作出离线承诺。
 
 [返回 Public Skills 技能目录](https://github.com/pelucoola/publicskills)

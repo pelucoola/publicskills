@@ -8,7 +8,7 @@
 
 | 技能 | 技能名称 | 可以帮你做什么 | 使用条件 | 版本 |
 | --- | --- | --- | --- | --- |
-| [错题讲评册](skills/exam-review-booklet/README.md) | `exam-review-booklet` | 把已作答的试卷、作业照片整理成可打印讲评册，保留原作答，分析错因，补齐思路与参考答案 | 识图、文件访问、Python、中文字体 | 1.0.1 |
+| [错题讲评册](skills/exam-review-booklet/README.md) | `exam-review-booklet` | 把已作答的试卷、作业照片整理成可打印讲评册，保留原作答，分析错因，补齐思路与参考答案 | 识图、文件访问、Python、中文字体 | 1.0.2 |
 
 ## 快速安装
 
@@ -24,7 +24,7 @@ https://github.com/pelucoola/publicskills/tree/main/skills/exam-review-booklet
 
 ### 通过 ZIP 安装
 
-下载 [错题讲评册 1.0.1 安装包](dist/exam-review-booklet/exam-review-booklet-1.0.1.zip)，交给你的 agent，并让它安装其中完整的 `exam-review-booklet` 文件夹。其他技能的下载入口会列在各自 README 中。
+下载 [错题讲评册 1.0.2 安装包](dist/exam-review-booklet/exam-review-booklet-1.0.2.zip)，交给你的 agent，并让它安装其中完整的 `exam-review-booklet` 文件夹。其他技能的下载入口会列在各自 README 中。
 
 技能的实际安装位置、调用方式和依赖安装方式，由目标客户端确定。不同 agent 的能力有差异，安装前请查看对应技能的运行条件。
 
@@ -44,8 +44,8 @@ publicskills/
 │       └── assets/                   # 排版样式
 └── dist/                             # 可下载的安装包，按技能名称归档
     └── exam-review-booklet/
-        ├── exam-review-booklet-1.0.1.zip
-        └── exam-review-booklet-1.0.1.zip.sha256
+        ├── exam-review-booklet-1.0.2.zip
+        └── exam-review-booklet-1.0.2.zip.sha256
 ```
 
 ## 后续技能如何放置
@@ -54,7 +54,7 @@ publicskills/
 2. 每个技能的 `README.md` 说明用途、适用场景、输入与输出、安装、调用方法及运行条件；`SKILL.md` 保存 agent 执行任务所需的指引。
 3. 脚本、参考资料和样式等资源放在技能目录内部，保留相对路径。按需添加资源，避免依赖作者电脑上的固定路径。
 4. ZIP 安装包放在 `dist/<skill-name>/`，文件名使用 `<skill-name>-<version>.zip`，同时提供 SHA-256 校验文件。解压后应得到一个完整的技能文件夹。
-5. 新增或更新技能时，同步修改本页的技能表、对应 README、版本和安装包。历史安装包按版本保留。
+5. 新增或更新技能时，同步修改本页的技能表、对应 README、版本和安装包。当前发布目录只保留经过脱敏检查的安装包；发现带有原任务信息的旧包时撤下，源码历史通过 Git 提交回看。
 
 ## 数据与授权
 
