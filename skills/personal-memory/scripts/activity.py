@@ -17,7 +17,8 @@ BRANCH = "personal-memory-activity"
 REMOTE_REF = f"refs/heads/{BRANCH}"
 FETCH_REF = "refs/personal-memory/activity-remote"
 DEVICE_REF = "refs/personal-memory/activity-device"
-ENABLED_KEY = "personal-memory.activity"
+LOCAL_REF_PREFIX = "refs/personal-memory/activity-local/"
+LEGACY_ENABLED_KEY = "personal-memory.activity"
 AGENT_ID = re.compile(r"[a-z0-9][a-z0-9-]{0,47}")
 RECORD_FILE = re.compile(r"([0-9a-f]{32})--([a-z0-9][a-z0-9-]{0,47})\.json")
 TIME_FORMAT = "%Y-%m-%dT%H:%M:%SZ"
@@ -129,7 +130,7 @@ def device_id(git):
 def record_local(git, agent, event):
     device = device_id(git)
     filename = f"{device}--{agent}.json"
-    ref = f"refs/personal-memory/activity-local/{agent}"
+    ref = f"{LOCAL_REF_PREFIX}{agent}"
     moment = timestamp(now_utc())
     record = {"device_id": device, "agent": agent, **dict.fromkeys(TIME_FIELDS)}
     record["last_seen_at"] = moment
@@ -241,13 +242,24 @@ def activity_window(value):
     return hours
 
 
+def agent_activity_enabled(git, agent, key):
+    setting = git.run("config", "--local", "--bool", "--get", key, missing=True)
+    if setting:
+        return setting == "true"
+    # Keep legacy opt-in for agents that already recorded locally in this clone.
+    if not git.ref(f"{LOCAL_REF_PREFIX}{agent}"):
+        return False
+    legacy = git.run("config", "--local", "--bool", "--get", LEGACY_ENABLED_KEY, missing=True)
+    return legacy == "true"
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     default_repo = os.environ.get("PERSONAL_MEMORY_DIR") or Path.home() / ".local/share/personal-memory"
     parser.add_argument("--repo", default=default_repo, help="path of the bound memory clone")
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("enable").add_argument("--agent", required=True, type=agent_name)
-    commands.add_parser("disable")
+    commands.add_parser("disable").add_argument("--agent", required=True, type=agent_name)
     record = commands.add_parser("record")
     record.add_argument("--agent", required=True, type=agent_name)
     record.add_argument("--event", required=True, choices=("seen", *EVENT_FIELDS))
@@ -258,13 +270,11 @@ def main():
         git = Git(args.repo)
         if args.command == "status":
             result = status(git, args.hours)
-        elif args.command == "disable":
-            git.run("config", "--local", ENABLED_KEY, "false")
-            result = {"enabled": False}
         else:
-            if args.command == "enable":
-                git.run("config", "--local", ENABLED_KEY, "true")
-            enabled = git.run("config", "--local", "--bool", "--get", ENABLED_KEY, missing=True) == "true"
+            key = f"personal-memory.{args.agent}.activity"
+            if args.command in ("enable", "disable"):
+                git.run("config", "--local", key, "true" if args.command == "enable" else "false")
+            enabled = agent_activity_enabled(git, args.agent, key)
             result = {"enabled": enabled}
             if enabled:
                 filename, entry = record_local(git, args.agent, getattr(args, "event", "seen"))

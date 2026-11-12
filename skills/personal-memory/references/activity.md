@@ -4,7 +4,7 @@
 
 ## 开启与查询
 
-- 用户要求记录终端活动时，在完成私有仓库绑定后运行 `enable`。如果用户在首次配置中提出统计需求，也可以一并启用。启用会登记本机和当前 Agent，并允许同步以下活动字段。
+- 配置当前 Agent 时询问是否开启统计，复用用户已给出的选择。开启时运行 `enable --agent`，登记本机和该 Agent。选择关闭时用 `disable --agent` 保存该选择。两条命令只设置当前 Agent 的 `personal-memory.<agent>.activity`。
 - `--agent` 填该客户端的稳定名称，例如 `codex` 或 `openclaw`。同一客户端的不同常驻配置可用不同名称，例如 `codex-work`。使用小写英文字母、数字和连字符。每个会话复用所属 Agent 名称。使用默认本地记忆目录时可省略 `--repo`。
 - 用户问「现在多少终端在用」「最后什么时候拉取或更新」时运行 `status`。报告最近 24 小时的活跃终端和 Agent 数、累计登记数，以及每个终端和 Agent 的最后成功时间。按用户指定窗口查询时传入 `--hours`。
 
@@ -22,12 +22,12 @@ python3 scripts/activity.py --repo "$memory_dir" status --hours 24
 
 ## 记录与关闭
 
-只有在对应操作成功后才调用 `record`。一次任务实际完成了拉取和更新时，各记一次。脚本会检查该克隆是否启用了统计。失败的拉取、本地纯查阅、活动状态查询和没有产生新提交的记忆编辑均无需登记。
+只有在对应操作成功后才调用 `record`。一次任务实际完成了拉取和更新时，各记一次。脚本检查该 Agent 的统计设置。旧版在此克隆开启统计且该 Agent 已有本机活动记录时，沿用其旧版选择。新 Agent 通过首次配置选择是否登记。失败的拉取、本地纯查阅、活动状态查询和没有产生新提交的记忆编辑均无需登记。
 
 ```bash
 python3 scripts/activity.py --repo "$memory_dir" record --agent codex --event pull
 python3 scripts/activity.py --repo "$memory_dir" record --agent codex --event update
-python3 scripts/activity.py --repo "$memory_dir" disable
+python3 scripts/activity.py --repo "$memory_dir" disable --agent codex
 ```
 
-活动同步失败时，脚本保留该 Agent 最新的本机时间，下一次记录该 Agent 的活动时会重试。记忆操作和活动记录分别报告结果。查询远端失败时说明暂时读不到统计。`disable` 停止这份克隆的后续登记，已同步的记录会随时间退出活跃窗口。
+活动同步失败时，脚本保留该 Agent 最新的本机时间，下一次记录该 Agent 的活动时会重试。记忆操作和活动记录分别报告结果。查询远端失败时说明暂时读不到统计。`disable` 停止所选 Agent 的后续登记，已同步的记录会随时间退出活跃窗口。
