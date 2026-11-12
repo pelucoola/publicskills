@@ -1,16 +1,16 @@
 # 个人长期记忆
 
-`personal-memory` 1.2.0 用 Git 管理长期偏好、项目记录和重要决定。资料使用普通 Markdown。绑定同一个私有仓库后，可在不同电脑或 Agent 上继续读取和更新。
+`personal-memory` 1.3.0 用 Git 管理长期偏好、项目记录和重要决定。资料使用普通 Markdown。绑定同一个私有仓库后，可在不同电脑或 Agent 上继续读取和更新。
 
 ## 安装
 
-把 [技能目录](https://github.com/pelucoola/publicskills/tree/main/skills/personal-memory) 或 [ZIP 安装包](https://github.com/pelucoola/publicskills/blob/main/dist/personal-memory/personal-memory-1.2.0.zip) 交给支持 Agent Skills 的客户端。安装包提供 [SHA-256 校验文件](https://github.com/pelucoola/publicskills/blob/main/dist/personal-memory/personal-memory-1.2.0.zip.sha256)。想在同一次对话里安装并配置，可以使用这条请求。
+把 [技能目录](https://github.com/pelucoola/publicskills/tree/main/skills/personal-memory) 或 [ZIP 安装包](https://github.com/pelucoola/publicskills/blob/main/dist/personal-memory/personal-memory-1.3.0.zip) 交给支持 Agent Skills 的客户端。安装包提供 [SHA-256 校验文件](https://github.com/pelucoola/publicskills/blob/main/dist/personal-memory/personal-memory-1.3.0.zip.sha256)。想在同一次对话里安装并配置，可以使用这条请求。
 
 ```text
 用 $skill-installer 从 https://github.com/pelucoola/publicskills/tree/main/skills/personal-memory 安装 personal-memory。安装后读取刚安装的 SKILL.md，带我完成首次交互配置。
 ```
 
-使用环境需要 Git、记忆目录的读写权限，以及私有 Git 仓库的访问权限。远程服务可以用 GitHub 私有仓库或你自己的 Git 服务。
+使用环境需要 Git、记忆目录的读写权限，以及私有 Git 仓库的访问权限。使用状态功能还需要 Python 3.8 或更新版本。远程服务可以用 GitHub 私有仓库或你自己的 Git 服务。
 
 ## 首次交互配置
 
@@ -26,6 +26,9 @@
 | 把这条偏好加入长期记忆 | 更新相关 Markdown，并在本机记录一次 Git 提交 |
 | 更新这个项目的进度并同步到记忆仓库 | 先拉取，更新记录，核对改动后提交并推送 |
 | 在长期记忆里找出上次为什么做这个决定 | 查阅项目记录，必要时查看 Git 历史 |
+| 查看最近有哪些终端或 Agent 在用记忆 | 统计活跃和累计登记数量，并查看最后成功拉取和更新时间 |
+
+想加入统计，可在每份记忆仓库克隆上说「开启终端和 Agent 使用记录」。多台电脑绑定同一个私有仓库后，可以在任意一台查询。活跃默认指最近 24 小时有记录的操作，终端按本地 Git 克隆区分。 [统计口径和用法](references/activity.md)
 
 ## 自动管理规则
 
