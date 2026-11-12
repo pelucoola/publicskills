@@ -1,0 +1,4 @@
+interface:
+  display_name: "个人长期记忆"
+  short_description: "用可配置的私有 Git 仓库维护 Markdown 记忆，在不同电脑和 Agent 上拉取与更新"
+  default_prompt: "用 $personal-memory 拉取我的长期记忆，找出当前任务需要参考的记录。"
