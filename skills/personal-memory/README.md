@@ -1,28 +1,22 @@
 # 个人长期记忆
 
-`personal-memory` 1.1.0 用 Git 管理长期偏好、项目记录和重要决定。资料使用普通 Markdown。绑定同一个私有仓库后，可在不同电脑或 Agent 上继续读取和更新。
+`personal-memory` 1.2.0 用 Git 管理长期偏好、项目记录和重要决定。资料使用普通 Markdown。绑定同一个私有仓库后，可在不同电脑或 Agent 上继续读取和更新。
 
 ## 安装
 
-把 [技能目录](https://github.com/pelucoola/publicskills/tree/main/skills/personal-memory) 或 [ZIP 安装包](https://github.com/pelucoola/publicskills/blob/main/dist/personal-memory/personal-memory-1.1.0.zip) 交给支持 Agent Skills 的客户端。安装包提供 [SHA-256 校验文件](https://github.com/pelucoola/publicskills/blob/main/dist/personal-memory/personal-memory-1.1.0.zip.sha256)。可以把安装、绑定和开启自动管理写在同一条请求中。
+把 [技能目录](https://github.com/pelucoola/publicskills/tree/main/skills/personal-memory) 或 [ZIP 安装包](https://github.com/pelucoola/publicskills/blob/main/dist/personal-memory/personal-memory-1.2.0.zip) 交给支持 Agent Skills 的客户端。安装包提供 [SHA-256 校验文件](https://github.com/pelucoola/publicskills/blob/main/dist/personal-memory/personal-memory-1.2.0.zip.sha256)。想在同一次对话里安装并配置，可以使用这条请求。
 
 ```text
-用 $skill-installer 从 https://github.com/pelucoola/publicskills/tree/main/skills/personal-memory 安装 personal-memory。安装后读取刚安装的 SKILL.md，绑定我的私有 Git 仓库 <私有 Git 地址>，并在本机全局指令中开启自动记忆管理。默认只创建本地提交。
+用 $skill-installer 从 https://github.com/pelucoola/publicskills/tree/main/skills/personal-memory 安装 personal-memory。安装后读取刚安装的 SKILL.md，带我完成首次交互配置。
 ```
 
 使用环境需要 Git、记忆目录的读写权限，以及私有 Git 仓库的访问权限。远程服务可以用 GitHub 私有仓库或你自己的 Git 服务。
 
-也可以只在当前项目开启。要让 Agent 在自动更新后推送，把「默认只创建本地提交」改成「允许自动同步到这个私有仓库」。已安装旧版的用户可以更新 Skill 后用现有仓库绑定开启自动管理。 [常驻指令配置](references/standing-instructions.md)
+## 首次交互配置
 
-## 配置你的记忆仓库
+安装完成后，首次调用 `$personal-memory` 时，Agent 会检查本机绑定。首次绑定会引导你输入私有 Git 仓库地址，再选择自动管理范围和推送方式。有交互提问工具的客户端可以弹框收集输入，其余客户端可以在聊天中逐项询问。已有绑定和设置可直接使用。
 
-先准备一个独立的私有 Git 仓库。安装 Skill 后，把**这个私有仓库的 Git 地址**交给 Agent。例如：
-
-```text
-用 $personal-memory 配置长期记忆。远程仓库是 git@example.com:your-account/personal-memory.git。
-```
-
-分支默认沿用远程默认分支，新建空仓库默认使用 `main`。默认本地目录为 `~/.local/share/personal-memory`。也可以指定其它分支和本地目录。Git 在本机记忆目录保存绑定，换设备时再次绑定同一个私有仓库。
+分支默认沿用远程默认分支，新建空仓库默认使用 `main`。默认本地目录为 `~/.local/share/personal-memory`。也可以指定其它分支和本地目录。启用自动管理时，可以选择在本机全局生效、仅在指定项目生效，以及是否自动推送。 [常驻指令配置](references/standing-instructions.md)
 
 ## 日常使用
 
