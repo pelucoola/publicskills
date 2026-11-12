@@ -9,7 +9,7 @@
 | 技能 | 技能名称 | 可以帮你做什么 | 使用条件 | 版本 |
 | --- | --- | --- | --- | --- |
 | [错题讲评册](skills/exam-review-booklet/README.md) | `exam-review-booklet` | 把已作答的试卷、作业照片整理成可打印讲评册，保留原作答，分析错因，补齐思路与参考答案 | 识图、文件访问、Python、中文字体 | 1.0.2 |
-| [个人长期记忆](skills/personal-memory/README.md) | `personal-memory` | 用私有 Git 仓库管理可跨电脑和 Agent 拉取、修订与同步的 Markdown 记忆 | Git、文件访问、私有仓库访问权限 | 1.0.0 |
+| [个人长期记忆](skills/personal-memory/README.md) | `personal-memory` | 用私有 Git 仓库跨电脑同步 Markdown 记忆，可通过常驻指令按需自动维护 | Git、文件访问、私有仓库访问权限 | 1.1.0 |
 
 ## 快速安装
 
